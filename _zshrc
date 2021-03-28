@@ -65,24 +65,26 @@ HIST_STAMPS="yyyy-mm-dd"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
+# Virtual env settings (have to set before the plugin loads)
+VIRTUAL_ENV_DISABLE_PROMPT=1
+DISABLE_VENV_CD=1   # this makes the prompt super slow in git repos
+
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker docker-compose kubectl kubetail brew helm pass thefuck colored-man-pages ansible kube-ps1 virtualenvwrapper fzf)
+plugins=(git docker docker-compose kubectl kubetail brew pass thefuck colored-man-pages ansible fzf virtualenvwrapper terraform) #kube-ps1
 
 source $ZSH/oh-my-zsh.sh
 
-# stern completions
-if [[ $(command -v stern) ]]; then 
-    source <(stern --completions=zsh)
-fi
-
 # User configuration
 
-# Virtual env
-VIRTUAL_ENV_DISABLE_PROMPT=1
+# stern completions
+if [[ $(command -v stern) ]]; then 
+    source <(stern --completion=zsh)
+fi
+
 
 # Preferred editor for local and remote sessions
 export EDITOR=vim
@@ -121,6 +123,8 @@ alias :q="exit"
 alias reset-zsh-completions="rm ~/.zcompdump* && rm ~/.oh-my-zsh/cache/*"
 
 # rg over grep
+alias rg="rg --smart-case"  # only case sensitive if UpperCase used
+alias rgh="rg --hidden"
 alias grep="rg"
 
 # listing files (use exa over ls)
@@ -133,10 +137,13 @@ alias la="l -a"
 alias lc="l -t created"
 alias lt="l -s new"
 
+# Human readable aliases
 alias df="df -hT"   # human readable+type
 alias du="du -h"
 
-alias grep="rg"
+# Quality of life improvements
+alias fdh="fd --hidden"
+alias s="git status"
 
 # gcloud
 alias gclusters="gcloud container clusters"
@@ -164,3 +171,10 @@ export SCOUT_DISABLE=1  # Telepresence
 if [[ -f $HOME/.zshrc.local-post ]]; then
     source ~/.zshrc.local-post
 fi
+
+source /home/roman/.config/broot/launcher/bash/br
+
+export RUSTC_WRAPPER=sccache
+
+eval "$(starship init zsh)"
+
