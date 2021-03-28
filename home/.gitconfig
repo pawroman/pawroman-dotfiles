@@ -1,0 +1,15 @@
+[user]
+    email = pawroman@pawroman.dev
+    name = Paweł Romanowski
+[push]
+    default = current
+[core]
+    excludesfile = ~/.gitignore
+    quotepath = off
+    pager = delta
+[diff]
+    colorMoved = default
+[delta]
+    side-by-side = true
+[init]
+    defaultBranch = master

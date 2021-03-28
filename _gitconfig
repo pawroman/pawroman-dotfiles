@@ -1,6 +1,0 @@
-[push]
-    default = current
-[core]
-    excludesfile = ~/.gitignore
-    quotepath = off
-

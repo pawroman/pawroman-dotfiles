@@ -1,0 +1,99 @@
+# Don't print a new line at the start of the prompt
+add_newline = false
+scan_timeout = 10
+
+ #prompt_order = [
+ #    "username",
+ #    "hostname",
+ #    "kubernetes",
+ #    "directory",
+ #    "git_branch",
+ #    "git_commit",
+ #    "git_state",
+ #    "git_status",
+ #    "hg_branch",
+ #    "docker_context",
+ #    "dotnet",
+ #    "elixir",
+ #    "elm",
+ #    "golang",
+ #    "haskell",
+ #    "java",
+ #    "julia",
+ #    "nodejs",
+ #    "php",
+ #    "python",
+ #    "ruby",
+ #    "rust",
+ #    "terraform",
+ #    "nix_shell",
+ #    "conda",
+ #    "memory_usage",
+ #    "aws",
+ #    "env_var",
+ #    "crystal",
+ #    "package",
+ #    "cmd_duration",
+ #    "custom",
+ #    "line_break",
+ #    "jobs",
+ #    "battery",
+ #    "time",
+ #    "character",
+ #]
+
+[character]
+success_symbol = "\n[](bold yellow) [](bold green)"
+error_symbol = "\n[](bold yellow) [](bold red)"
+
+[hostname]
+format = "[$hostname]($style) "
+
+[username]
+format = "[$hostname]($style) "
+
+[cmd_duration]
+format = "[$duration]($style) "
+style = "bold fg:178"
+
+[directory]
+format = "[ $path]($style) "
+style = "bold blue"
+truncation_length = 8
+
+[git_status]
+staged_count.enabled = true
+modified_count.enabled = true
+
+[git_branch]
+disabled = false
+symbol = ""
+format = "[$symbol$branch]($style) "
+
+[git_commit]
+disabled = false
+
+[docker_context]
+disabled = true
+
+[kubernetes]
+disabled = true
+# disabled = false
+symbol = "\uf233 "
+format = "[$symbol$context( \\($namespace\\))]($style) "
+
+[kubernetes.context_aliases]
+#ckad = "alias"
+
+[line_break]
+disabled = true
+
+[python]
+symbol = "\ue235 "
+format = "[${symbol}${version}( \\($virtualenv\\))]($style) "
+
+[rust]
+format = "[$symbol$version]($style) "
+
+[package]
+format = "[$symbol$version]($style) "
